@@ -1,0 +1,20 @@
+#form {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 10%;
+}
+
+#cep div{
+    padding-top: 12px !important;
+    padding-left: 12px !important;
+    padding-bottom: 12px !important;
+}
+
+#cep{
+    display: none;
+}
+
+
+#cnpj{
+    display: none;
+}
