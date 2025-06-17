@@ -37,6 +37,11 @@
 }
 
 
+#isbn{
+    display: none;
+}
+
+
 @media only screen and (max-width: 1400px) {
     #cep div{
         width: 90%;

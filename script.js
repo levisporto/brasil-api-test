@@ -6,6 +6,10 @@ function closeTabCnpj(){
   document.getElementById("cnpj").style.display = "none";
 }
 
+function closeTabIsbn(){
+  document.getElementById("isbn").style.display = "none";
+}
+
 function extractNumbers(inputStr) {
   return inputStr.replace(/\D/g, '');
 }
@@ -140,15 +144,6 @@ if(typeof  data.bairro  === "string"){
 }
   
 
-
-
-
-
-
-
-
-
-
   }
 
 
@@ -167,32 +162,114 @@ if(typeof  data.bairro  === "string"){
 
 
 
-async function buscarISBN() {
+
+
+  async function buscarISBN() {
+ 
+    document.getElementById("isbn").style.display = "block";
+  
+  
+     let userISBN = document.getElementById("userIsbn").value;
+     userISBN = extractNumbers(userISBN);
+  
+     let response = await fetch(`https://brasilapi.com.br/api/isbn/v1/${userISBN}`);
+    let data = await response.json();
+    console.log(data);
+     
+    
+  
+    let h2ISBN = document.getElementById("h2-isbn")
+    if(typeof data.title === "string"){
+      h2ISBN.innerHTML = data.title;
+    } else {
+      h2ISBN.innerHTML = 'ISBN não encontrado!'
+    }
+    
+    
+    let pISBN = document.getElementById("p-isbn")
+    
+    if(typeof data.title === "string"){
+      pISBN.innerHTML = data.authors[0];
+    } else {
+      pISBN.innerHTML = 'Verifique se digitou corretamente.'
+    }
+  
+  
+    let natISBN = document.getElementById("nat-isbn")
+    
+    if(typeof data.location === "string"){
+      natISBN.innerHTML = data.location + ', ' + data.year;
+    } else {
+      natISBN.innerHTML = ''
+    }
+    
    
-    let userISBN = document.getElementById("userIsbn").value;
-    let response = await fetch(`https://brasilapi.com.br/api/isbn/v1/${userISBN}`);
-   let data = await response.json();
-   console.log(data);
+    let enderecoCnpj = document.getElementById("endereco-isbn")
+  
+  if(typeof data.logradouro  === "string"){
+    enderecoCnpj.innerHTML = data.municipio + ', ' + data.uf + ', ' + data.descricao_tipo_de_logradouro + ' '  + data.logradouro + ' - BAIRRO ' +  data.bairro + ', Nº ' + data.numero + ', ' + data.complemento + ' - CEP ' + data.cep;
+  } else {
+    enderecoCnpj.innerHTML = ''
+  }
+  
     
+  let publisherISBN = document.getElementById("publisher-isbn");
+  
     
- 
- }
- 
+  if(typeof data.publisher === "string"){
+    publisherISBN.innerHTML = data.publisher;
+  } else {
+    publisherISBN.innerHTML = ' '
+  }
+  
+  
+
+  let paginasISBN = document.getElementById("paginas-isbn");
+  
+    
+  if (typeof data.format === 'string') {
+    if (data.format === 'PHYSICAL') {
+      if (data.dimensions && data.dimensions.height) {
+        paginasISBN.innerHTML = `Livro físico, ${data.page_count} páginas. ${data.dimensions.height} cm (altura) por ${data.dimensions.width} cm (largura)`;
+      } else {
+        paginasISBN.innerHTML = `Livro físico, ${data.page_count} páginas`;
+      }
+    } else {
+      paginasISBN.innerHTML = `Edição digital, ${data.page_count} páginas`;
+    }
+  } else {
+    paginasISBN.innerHTML = ' ';
+  }
+  
+
+  let subjectsISBN = document.getElementById("subjects-isbn");
+  
+    
+  if(typeof data.publisher === "string"){
+    subjectsISBN.innerHTML = data.subjects[0] + ', ' + data.subjects[1] + ', ' +data.subjects[2]
+  } else {
+    subjectsISBN.innerHTML = ' '
+  }
+  
+
+  let synopsisISBN = document.getElementById("synopsis-isbn");
+  
+    
+  if(typeof data.synopsis === "string"){
+    synopsisISBN.innerHTML = data.synopsis;
+  } else {
+    synopsisISBN.innerHTML = ' '
+  }
+  
 
 
- //async function converterMoeda() {
-   
-//   let moeda = 
- //   let response = await fetch(`https://brasilapi.com.br/api/cambio/v1/cotacao/${moeda}/${ontem}`);
-  // let data = await response.json();
- //  console.log(data);
-    
-    
- 
-// }
 
 
-// converterMoeda()
+
+  
+    }
+  
+
 
 
  

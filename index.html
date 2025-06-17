@@ -44,10 +44,6 @@
 
 
 
-
-
-
-
                         <div class="col-md-12">
                            <input id= 'userCnpj' onsubmit="return false;" type="text" name="name" placeholder="Procurar CNPJ" >
                            
@@ -69,16 +65,28 @@
                         <br>                     
 
                         <div class="col-md-12">
-                            <input id= 'userIsbn' onsubmit="return false;" type="text" name="name" placeholder="Procurar ISBN" >
-                            
-                         </div>
-                         
-                         <div class="form-button mt-3">
-                            <button id="submit"  type="submit" onclick= 'buscarISBN()' class="btn btn-info">Buscar</button>
-                         </div>
+                           <input id= 'userIsbn' onsubmit="return false;" type="text" name="name" placeholder="Procurar ISBN" >
+                           
+                        </div>
+                        
+                        <div class="form-button mt-3">
+                           <button id="submit"  type="submit" onclick= 'buscarISBN()' class="btn btn-warning">Buscar</button>
+                        </div> <br>
+
+                        <div id="isbn" class="col-md-6">  <div class="h-100 p-5 bg-body-tertiary border rounded-3"> <div id="close" onclick="closeTabIsbn()">
+                           <i class="bi bi-x-circle"></i>
+                        </div> <h2 id="h2-isbn"></h2> <p id="p-isbn"></p> <p id="nat-isbn"></p> <p id="publisher-isbn"></p> <p id="endereco-isbn"></p>
+                        <p id="paginas-isbn"></p> <p id="synopsis-isbn"></p> <p id="subjects-isbn"></p>
 
 
-                         <br>
+                     </div>  </div> <br>
+                       
+
+
+
+
+
+
 
                          <div class="col-md-12">
                             <input id= 'moedaUser' onsubmit="return false;" type="text" name="name" placeholder="Converter moeda" >
