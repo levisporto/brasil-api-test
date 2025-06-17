@@ -59,7 +59,7 @@ if(typeof data.city === "string"){
 
 
 async function buscarCNPJ() {
-   
+ 
   document.getElementById("cnpj").style.display = "block";
 
 
@@ -94,7 +94,7 @@ async function buscarCNPJ() {
   if(typeof data.natureza_juridica === "string"){
     natCNPJ.innerHTML = data.natureza_juridica;
   } else {
-    pCNPJ.innerHTML = ''
+    natCNPJ.innerHTML = ''
   }
   
  
@@ -108,18 +108,37 @@ if(typeof data.logradouro  === "string"){
 
   
 let telCNPJ = document.getElementById("tel-cnpj");
-data.ddd_telefone_1 = '(' + data.ddd_telefone_1.charAt(0) + data.ddd_telefone_1.charAt(1) + ') ' + data.ddd_telefone_1.slice(2);
+
   
 if(typeof data.ddd_telefone_1 === "string"){
+  data.ddd_telefone_1 = '(' + data.ddd_telefone_1.charAt(0) + data.ddd_telefone_1.charAt(1) + ') ' + data.ddd_telefone_1.slice(2);
   telCNPJ.innerHTML = 'Telefone: ' + data.ddd_telefone_1;
 } else {
-  pCNPJ.innerHTML = ''
+  telCNPJ.innerHTML = ' '
+}
+
+let lista = document.getElementById("lista-cnae");
+let details = document.getElementById("details");
+let details2 = document.getElementById("details2");
+
+
+if(typeof  data.bairro  === "string"){
+  details2.style.display = "block";
+  details.innerHTML = 'Outros CNAE';
+  lista.innerHTML = ' '
+  const list = document.createElement("ul"); 
+  for (let i = 0; i < data.cnaes_secundarios.length; i++) {
+      const listItem = document.createElement("li");
+      listItem.textContent = data.cnaes_secundarios[i].descricao;
+      list.appendChild(listItem);
+  }
+  
+  lista.appendChild(list);
+} else {
+  details.innerHTML = ' ';
+  details2.style.display = "none";
 }
   
-  
-
-
-
 
 
 
