@@ -22,7 +22,8 @@
                  <div class="form-items">
                     <h3><img src="brazil.png"> Brasil API</h3>
                     <p>Busca algumas informações públicas do Brasil.</p>
-                   
+                    
+                
                     
                        <div class="col-md-12">
                           <input id= 'userCep' type="text" name="name" placeholder="Procurar CEP" >
@@ -36,7 +37,7 @@
                   
 <br>
                     
-<div id="cep" class="col-md-6">  <div class="h-100 p-5 bg-body-tertiary border rounded-3"> <div id="close" onclick="closeTab()">
+<div id="cep" class="col-md-6">  <div class="h-100 p-5 bg-body-tertiary border rounded-3"> <div id="close" onclick="closeTabCep()">
    <i class="bi bi-x-circle"></i>
 </div> <h2 id="h2-cep"></h2> <p id="p-cep"></p> <p id="p-city"></p>  </div>  </div> <br>
 
@@ -54,9 +55,11 @@
                         
                         <div class="form-button mt-3">
                            <button id="submit"  type="submit" onclick= 'buscarCNPJ()' class="btn btn-warning">Buscar</button>
-                        </div>
+                        </div> <br>
 
-                        <div id="cnpj" class="col-md-6"> <div class="h-100 p-5 bg-body-tertiary border rounded-3"> <h2 id="h2-cnpj"></h2> <p id="p-cnpj"></p> </div> </div> <br>
+                        <div id="cnpj" class="col-md-6">  <div class="h-100 p-5 bg-body-tertiary border rounded-3"> <div id="close" onclick="closeTabCnpj()">
+                           <i class="bi bi-x-circle"></i>
+                        </div> <h2 id="h2-cnpj"></h2> <p id="p-cnpj"></p> <p id="endereco-cnpj"></p>  </div>  </div> <br>
                        
                        
                         <br>                     

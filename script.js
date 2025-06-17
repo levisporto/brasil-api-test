@@ -1,5 +1,13 @@
-function closeTab(){
+function closeTabCep(){
   document.getElementById("cep").style.display = "none";
+}
+
+function closeTabCnpj(){
+  document.getElementById("cnpj").style.display = "none";
+}
+
+function extractNumbers(inputStr) {
+  return inputStr.replace(/\D/g, '');
 }
 
 
@@ -50,20 +58,63 @@ if(typeof data.city === "string"){
 
 async function buscarCNPJ() {
    
+  document.getElementById("cnpj").style.display = "block";
+
+
    let userCNPJ = document.getElementById("userCnpj").value;
+   userCNPJ = extractNumbers(userCNPJ);
+
    let response = await fetch(`https://brasilapi.com.br/api/cnpj/v1/${userCNPJ}`);
   let data = await response.json();
   console.log(data);
    
+  
+
   let h2CNPJ = document.getElementById("h2-cnpj")
-  h2CNPJ.innerHTML = data.street;
+  if(typeof data.razao_social === "string"){
+    h2CNPJ.innerHTML = data.razao_social;
+  } else {
+    h2CNPJ.innerHTML = 'CNPJ não encontrado!'
+  }
+  
   
   let pCNPJ = document.getElementById("p-cnpj")
-  pCNPJ.innerHTML ='Bairro ' + data.neighborhood;
+  
+  if(typeof data.cnae_fiscal_descricao === "string"){
+    pCNPJ.innerHTML = data.cnae_fiscal_descricao;
+  } else {
+    pCNPJ.innerHTML = 'Verifique se digitou corretamente.'
+  }
+  
+ 
+  let enderecoCnpj = document.getElementById("endereco-cnpj")
+
+if(typeof data.logradouro  === "string"){
+  enderecoCnpj.innerHTML = data.municipio + ', ' + data.uf + ', ' + data.descricao_tipo_de_logradouro + ' '  + data.logradouro + ' - BAIRRO ' +  data.bairro + ', Nº ' + data.numero + ', ' + data.complemento + ' - CEP ' + data.cep;
+} else {
+  enderecoCnpj.innerHTML = ''
+}
+
+  
+  
+  
+  
+  }
+
+
+
   
   
 
-}
+
+
+
+
+
+
+
+
+
 
 
 async function buscarISBN() {
