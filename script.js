@@ -11,6 +11,8 @@ function extractNumbers(inputStr) {
 }
 
 
+
+
 async function buscarCEP() {
     document.getElementById("cep").style.display = "block";
    let userCEP = document.getElementById("userCep").value;
@@ -85,6 +87,15 @@ async function buscarCNPJ() {
   } else {
     pCNPJ.innerHTML = 'Verifique se digitou corretamente.'
   }
+
+
+  let natCNPJ = document.getElementById("nat-cnpj")
+  
+  if(typeof data.natureza_juridica === "string"){
+    natCNPJ.innerHTML = data.natureza_juridica;
+  } else {
+    pCNPJ.innerHTML = ''
+  }
   
  
   let enderecoCnpj = document.getElementById("endereco-cnpj")
@@ -96,9 +107,29 @@ if(typeof data.logradouro  === "string"){
 }
 
   
+let telCNPJ = document.getElementById("tel-cnpj");
+data.ddd_telefone_1 = '(' + data.ddd_telefone_1.charAt(0) + data.ddd_telefone_1.charAt(1) + ') ' + data.ddd_telefone_1.slice(2);
+  
+if(typeof data.ddd_telefone_1 === "string"){
+  telCNPJ.innerHTML = 'Telefone: ' + data.ddd_telefone_1;
+} else {
+  pCNPJ.innerHTML = ''
+}
   
   
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
   }
 
 
