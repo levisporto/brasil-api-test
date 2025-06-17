@@ -1,4 +1,6 @@
-
+function closeTab(){
+  document.getElementById("cep").style.display = "none";
+}
 
 
 async function buscarCEP() {
@@ -11,15 +13,40 @@ async function buscarCEP() {
   console.log(data);
    
 let h2CEP = document.getElementById("h2-cep")
-h2CEP.innerHTML = data.street;
+if(typeof data.street === "string"){
+  h2CEP.innerHTML = data.street;
+} else {
+  h2CEP.innerHTML = 'CEP não encontrado!'
+}
+
 
 let pCEP = document.getElementById("p-cep")
-pCEP.innerHTML ='Bairro ' + data.neighborhood;
+
+if(typeof data.neighborhood === "string"){
+  pCEP.innerHTML ='Bairro ' + data.neighborhood;
+} else {
+  pCEP.innerHTML = 'Verifique se digitou corretamente.'
+}
 
 let pCity = document.getElementById("p-city")
 
-pCity.innerHTML = data.city + ', ' + data.state;
+if(typeof data.city === "string"){
+  pCity.innerHTML = data.city + ', ' + data.state;
+} else {
+  pCity.innerHTML = ''
 }
+
+
+
+
+}
+
+
+
+
+
+
+
 
 async function buscarCNPJ() {
    
