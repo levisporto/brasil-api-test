@@ -187,9 +187,18 @@ if(typeof  data.bairro  === "string"){
     
     
     let pISBN = document.getElementById("p-isbn")
-    
+    let authorList = data.authors.length
+
     if(typeof data.title === "string"){
-      pISBN.innerHTML = data.authors[0];
+      if(authorList == 1){
+        pISBN.innerHTML = data.authors[0]}
+      if(authorList == 2){
+        pISBN.innerHTML = data.authors[0] + ', ' + data.authors[1]
+      }if(authorList == 3){
+        pISBN.innerHTML = data.authors[0] + ', ' + data.authors[1] + ', ' + data.authors[2]}
+        if(authorList == 4){
+          pISBN.innerHTML = data.authors[0] + ', ' + data.authors[1] + ', ' + data.authors[2] + ', ' + data.authors[3]}
+      
     } else {
       pISBN.innerHTML = 'Verifique se digitou corretamente.'
     }
@@ -231,11 +240,16 @@ if(typeof  data.bairro  === "string"){
     if (data.format === 'PHYSICAL') {
       if (data.dimensions && data.dimensions.height) {
         paginasISBN.innerHTML = `Livro físico, ${data.page_count} páginas. ${data.dimensions.height} cm (altura) por ${data.dimensions.width} cm (largura)`;
-      } else {
+      } if(data.page_count){
         paginasISBN.innerHTML = `Livro físico, ${data.page_count} páginas`;
       }
-    } else {
+       else {
+        paginasISBN.innerHTML = `Livro físico`;
+      }
+    } if (data.page_count) {
       paginasISBN.innerHTML = `Edição digital, ${data.page_count} páginas`;
+    } else {
+      paginasISBN.innerHTML = `Edição digital`
     }
   } else {
     paginasISBN.innerHTML = ' ';
@@ -244,12 +258,22 @@ if(typeof  data.bairro  === "string"){
 
   let subjectsISBN = document.getElementById("subjects-isbn");
   
-    
-  if(typeof data.publisher === "string"){
-    subjectsISBN.innerHTML = data.subjects[0] + ', ' + data.subjects[1] + ', ' +data.subjects[2]
-  } else {
-    subjectsISBN.innerHTML = ' '
-  }
+  let subjectsList = data.subjects.length
+
+    if(typeof data.title === "string"){
+      if(subjectsList == 1){
+        subjectsISBN.innerHTML = data.subjects[0]}
+      if(subjectsList == 2){
+        subjectsISBN.innerHTML = data.subjects[0] + ', ' + data.subjects[1]
+      }if(subjectsList == 3){
+        subjectsISBN.innerHTML = data.subjects[0] + ', ' + data.subjects[1] + ', ' + data.subjects[2]}
+        if(subjectsList == 4){
+          subjectsISBN.innerHTML = data.subjects[0] + ', ' + data.subjects[1] + ', ' + data.subjects[2] + ', ' + data.subjects[3]}
+          if(subjectsList == 5){
+            subjectsISBN.innerHTML = data.subjects[0] + ', ' + data.subjects[1] + ', ' + data.subjects[2] + ', ' + data.subjects[3] + ', ' + data.subjects[4]}
+    } else {
+      subjectsISBN.innerHTML = ''
+    }
   
 
   let synopsisISBN = document.getElementById("synopsis-isbn");
