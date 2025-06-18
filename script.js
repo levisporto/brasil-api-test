@@ -302,8 +302,9 @@ if(typeof  data.bairro  === "string"){
 
 
     async function converter() {
-    document.getElementById("moeda").style.display = "block";
+   
      let moeda = document.getElementById("moedas").value;
+     
      let date = new Date();
      let dataUser = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()-5}`
      console.log(dataUser);
@@ -317,61 +318,79 @@ if(typeof  data.bairro  === "string"){
      let moedaUser = document.getElementById("moedaUser").value;
      let h2moeda = document.getElementById("h2-moeda");
 
+     if(moedaUser){
+      document.getElementById("moeda").style.display = "block";
+     }
    
+     let equivalencia;
+     if(moedaUser>1){
+       equivalencia = ' equivalem a '
+     }else{
+       equivalencia = ' equivale a '
+     } 
+
      switch (moeda) {
       case 'USD':
         if(moedaUser > 1){
-          displayMoeda = "Dólares equivalem a";
+          displayMoeda = "Dólares";
         }
         
       else{
-        displayMoeda = "Dólar equivale a";
+        displayMoeda = "Dólar";
       }
         break;
       case 'GBP':
         if(moedaUser > 1){
-          displayMoeda = "Libras Esterlinas equivalem a";
+          displayMoeda = "Libras Esterlinas";
         }
         
       else{
-        displayMoeda = "Libra Esterlina equivale a";
+        displayMoeda = "Libra Esterlina";
       }
         
         break;
         case 'JPY':
           if(moedaUser > 1){
-            displayMoeda = "Ienes equivalem a";
+            displayMoeda = "Ienes";
           }
           
         else{
-          displayMoeda = "Iene equivale a";
+          displayMoeda = "Iene";
         }
           
           break;
           case 'EUR':
             if(moedaUser > 1){
-              displayMoeda = "Euros equivalem a";
+              displayMoeda = "Euros";
             }
             
           else{
-            displayMoeda = "Euro equivale a";
+            displayMoeda = "Euro";
           }
             
             break;
 
         }
 
+        
+
      h2moeda.innerHTML = (moedaUser * data.cotacoes[4].cotacao_compra).toFixed(2);
      let pmoeda = document.getElementById("p-moeda");
-     pmoeda.innerHTML = moedaUser+ ' ' + displayMoeda + '  ' + (moedaUser * data.cotacoes[4].cotacao_compra).toFixed(2) + ' Reais (BRL) na cotação de ontem.';
+     pmoeda.innerHTML = moedaUser+ ' ' + displayMoeda + equivalencia + (moedaUser * data.cotacoes[4].cotacao_compra).toFixed(2) + ' Reais (BRL) na cotação de ontem.';
 
 
+     let h2Real = document.getElementById("h2-real");
+     h2Real.innerHTML =  (moedaUser / data.cotacoes[4].cotacao_compra).toFixed(2);
 
-  //  if(typeof data.street === "string"){
-  //  h2CEP.innerHTML = data.street;
-  //  } else {
-  //  h2CEP.innerHTML = 'CEP não encontrado!'
- //   }
+
+     let pReal = document.getElementById("real");
+     let real
+    if (moedaUser>1){
+      real = ' Reais (BRL)'
+    } else{
+      real = ' Real (BRL)'
+    }
+     pReal.innerHTML = moedaUser + real + equivalencia + (moedaUser / data.cotacoes[4].cotacao_compra).toFixed(2) + ' ' + displayMoeda + ' na cotação de ontem.'
   }    
 
 
