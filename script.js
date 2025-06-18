@@ -22,8 +22,12 @@ function extractNumbers(inputStr) {
 
 
 async function buscarCEP() {
+  let userCEP = document.getElementById("userCep").value;
+  if(userCEP){
     document.getElementById("cep").style.display = "block";
-   let userCEP = document.getElementById("userCep").value;
+  }
+    
+   
  
    let response = await fetch(`https://brasilapi.com.br/api/cep/v1/${userCEP}`);
 
@@ -67,15 +71,20 @@ if(typeof data.city === "string"){
 
 
 async function buscarCNPJ() {
+
+  let userCNPJ = document.getElementById("userCnpj").value;
  
-  document.getElementById("cnpj").style.display = "block";
+  
 
 
-   let userCNPJ = document.getElementById("userCnpj").value;
+   
    userCNPJ = extractNumbers(userCNPJ);
 
    let response = await fetch(`https://brasilapi.com.br/api/cnpj/v1/${userCNPJ}`);
   let data = await response.json();
+  if(data){
+    document.getElementById("cnpj").style.display = "block";
+  }
   console.log(data);
    
   
@@ -170,7 +179,7 @@ if(typeof  data.bairro  === "string"){
 
   async function buscarISBN() {
  
-    document.getElementById("isbn").style.display = "block";
+    
   
   
      let userISBN = document.getElementById("userIsbn").value;
@@ -179,7 +188,9 @@ if(typeof  data.bairro  === "string"){
      let response = await fetch(`https://brasilapi.com.br/api/isbn/v1/${userISBN}`);
     let data = await response.json();
     console.log(data);
-     
+     if(data){
+      document.getElementById("isbn").style.display = "block";
+     }
     
   
     let h2ISBN = document.getElementById("h2-isbn")
