@@ -42,11 +42,24 @@
 }
 
 
+#moedas{
+    width: 15%;
+}
+
+#moeda{
+    display: none;
+}
+
+
+
 @media only screen and (max-width: 1400px) {
     #cep div{
         width: 90%;
     }
     #cnpj div{
         width: 90%;
+    }
+    #moedas{
+        width: 55%;
     }
   }

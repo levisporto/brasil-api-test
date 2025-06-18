@@ -10,6 +10,10 @@ function closeTabIsbn(){
   document.getElementById("isbn").style.display = "none";
 }
 
+function closeTabConversao(){
+  document.getElementById("moeda").style.display = "none";
+}
+
 function extractNumbers(inputStr) {
   return inputStr.replace(/\D/g, '');
 }
@@ -294,6 +298,25 @@ if(typeof  data.bairro  === "string"){
     }
   
 
+
+
+
+    async function converter() {
+    document.getElementById("moeda").style.display = "block";
+     let userCEP = document.getElementById("userCep").value;
+    
+     let response = await fetch(`https://brasilapi.com.br/api/cep/v1/${userCEP}`);
+    
+    let data = await response.json();
+    console.log(data);
+     
+    let h2CEP = document.getElementById("h2-cep")
+    if(typeof data.street === "string"){
+    h2CEP.innerHTML = data.street;
+    } else {
+    h2CEP.innerHTML = 'CEP não encontrado!'
+    }
+  }    
 
 
  

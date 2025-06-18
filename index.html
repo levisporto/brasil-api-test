@@ -62,7 +62,7 @@
                      </div>  </div> <br>
                        
                        
-                        <br>                     
+                                          
 
                         <div class="col-md-12">
                            <input id= 'userIsbn' onsubmit="return false;" type="text" name="name" placeholder="Procurar ISBN" >
@@ -70,7 +70,7 @@
                         </div>
                         
                         <div class="form-button mt-3">
-                           <button id="submit"  type="submit" onclick= 'buscarISBN()' class="btn btn-warning">Buscar</button>
+                           <button id="submit"  type="submit" onclick= 'buscarISBN()' class="btn btn-success">Buscar</button>
                         </div> <br>
 
                         <div id="isbn" class="col-md-6">  <div class="h-100 p-5 bg-body-tertiary border rounded-3"> <div id="close" onclick="closeTabIsbn()">
@@ -89,27 +89,30 @@
 
 
                          <div class="col-md-12">
-                            <input id= 'moedaUser' onsubmit="return false;" type="text" name="name" placeholder="Converter moeda" >
+                            <input id= 'moedaUser' onsubmit="return false;" type="text" name="name" placeholder="Converter Real" >
                             
                          </div>
                          
-
-                         <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                              Moeda de Conversão
-                            </button>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#">Dólar</a></li>
-                              <li><a class="dropdown-item" href="#">Euro</a></li>
-                              <li><a class="dropdown-item" href="#">Libra Esterlina</a></li>
-                              <li><a class="dropdown-item" href="#">Iene</a></li>
-                            </ul>
-                          </div>
-
+                         <select id="moedas" class="form-select" aria-label="Default select example">
+                           <option selected>Moeda de Conversão</option>
+                           <option value="1">Dólar</option>
+                           <option value="2">Euro</option>
+                           <option value="3">Iene</option>
+                           <option value="3">Libra Esterlina</option>
+                         </select>
 
                          <div class="form-button mt-3">
-                            <button id="submit"  type="submit" onclick= 'converterMoeda()' class="btn btn-info">Valor</button>
-                         </div>
+                           <button id="submit"  type="submit" onclick= 'converter()' class="btn btn-info">Converter</button>
+                        </div> <br>
+
+
+                        <div id="moeda" class="col-md-6">  <div class="h-100 p-5 bg-body-tertiary border rounded-3"> <div id="close" onclick="closeTabConversao()">
+                           <i class="bi bi-x-circle"></i>
+                        </div> <h2 id="h2-moeda"></h2> <p id="p-moeda"></p> <p id="nat-moeda"></p> <p id="publisher-moeda"></p> <p id="endereco-moeda"></p>
+                        <p id="paginas-moeda"></p> <p id="synopsis-moeda"></p> <p id="subjects-moeda"></p>
+
+
+                     </div>  </div> <br>
                      
                          
 
