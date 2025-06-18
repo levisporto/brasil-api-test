@@ -303,19 +303,75 @@ if(typeof  data.bairro  === "string"){
 
     async function converter() {
     document.getElementById("moeda").style.display = "block";
-     let userCEP = document.getElementById("userCep").value;
-    
-     let response = await fetch(`https://brasilapi.com.br/api/cep/v1/${userCEP}`);
+     let moeda = document.getElementById("moedas").value;
+     let date = new Date();
+     let dataUser = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()-5}`
+     console.log(dataUser);
+    let response = await fetch(`https://brasilapi.com.br/api/cambio/v1/cotacao/${moeda}/${dataUser}`);
     
     let data = await response.json();
-    console.log(data);
-     
-    let h2CEP = document.getElementById("h2-cep")
-    if(typeof data.street === "string"){
-    h2CEP.innerHTML = data.street;
-    } else {
-    h2CEP.innerHTML = 'CEP não encontrado!'
-    }
+  console.log(data);
+  
+
+
+     let moedaUser = document.getElementById("moedaUser").value;
+     let h2moeda = document.getElementById("h2-moeda");
+
+   
+     switch (moeda) {
+      case 'USD':
+        if(moedaUser > 1){
+          displayMoeda = "Dólares equivalem a";
+        }
+        
+      else{
+        displayMoeda = "Dólar equivale a";
+      }
+        break;
+      case 'GBP':
+        if(moedaUser > 1){
+          displayMoeda = "Libras Esterlinas equivalem a";
+        }
+        
+      else{
+        displayMoeda = "Libra Esterlina equivale a";
+      }
+        
+        break;
+        case 'JPY':
+          if(moedaUser > 1){
+            displayMoeda = "Ienes equivalem a";
+          }
+          
+        else{
+          displayMoeda = "Iene equivale a";
+        }
+          
+          break;
+          case 'EUR':
+            if(moedaUser > 1){
+              displayMoeda = "Euros equivalem a";
+            }
+            
+          else{
+            displayMoeda = "Euro equivale a";
+          }
+            
+            break;
+
+        }
+
+     h2moeda.innerHTML = (moedaUser * data.cotacoes[4].cotacao_compra).toFixed(2);
+     let pmoeda = document.getElementById("p-moeda");
+     pmoeda.innerHTML = moedaUser+ ' ' + displayMoeda + '  ' + (moedaUser * data.cotacoes[4].cotacao_compra).toFixed(2) + ' Reais (BRL) na cotação de ontem.';
+
+
+
+  //  if(typeof data.street === "string"){
+  //  h2CEP.innerHTML = data.street;
+  //  } else {
+  //  h2CEP.innerHTML = 'CEP não encontrado!'
+ //   }
   }    
 
 
